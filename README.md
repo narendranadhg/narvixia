@@ -1,4 +1,4 @@
-# Registration AI
+# Narvixia AI
 
 AI-powered Property Registration & Document Management Platform.
 

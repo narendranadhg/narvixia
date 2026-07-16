@@ -1,12 +1,12 @@
 services:
   postgres:
     image: postgres:16
-    container_name: registration-ai-postgres
+    container_name: narvixia-postgres
 
     restart: unless-stopped
 
     environment:
-      POSTGRES_DB: registration_ai
+      POSTGRES_DB: narvixia_ai
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
 
@@ -18,12 +18,12 @@ services:
 
   pgadmin:
     image: dpage/pgadmin4:latest
-    container_name: registration-ai-pgadmin
+    container_name: narvixia-pgadmin
 
     restart: unless-stopped
 
     environment:
-      PGADMIN_DEFAULT_EMAIL: admin@registrationai.com
+      PGADMIN_DEFAULT_EMAIL: admin@narvixia.com
       PGADMIN_DEFAULT_PASSWORD: admin123
 
     ports:

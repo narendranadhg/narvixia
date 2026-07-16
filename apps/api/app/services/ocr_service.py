@@ -4,26 +4,44 @@ import easyocr
 
 class OCRService:
     """
-    Handles Optical Character Recognition (OCR)
-    using EasyOCR.
+    OCR Service using EasyOCR.
+
+    Responsibilities:
+    - Load OCR model once
+    - Extract text from supported documents
     """
 
     def __init__(self):
         print("Loading EasyOCR model...")
-        self.reader = easyocr.Reader(["en"])
+
+        self.reader = easyocr.Reader(
+            ["en"],
+            gpu=False
+        )
+
         print("EasyOCR model loaded successfully.")
 
     def extract_text(self, file_path: str) -> str:
         """
-        Extract text from an image.
+        Extract text from a document.
 
         Args:
-            file_path (str): Path to the image.
+            file_path: Path to the document.
 
         Returns:
-            str: Extracted text.
+            Extracted text.
         """
 
-        results = self.reader.readtext(file_path, detail=0)
+        path = Path(file_path)
 
-        return "\n".join(results)
+        if not path.exists():
+            raise FileNotFoundError(
+                f"File not found: {file_path}"
+            )
+
+        results = self.reader.readtext(
+            str(path),
+            detail=0
+        )
+
+        return "\n".join(results).strip()
